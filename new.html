@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Arrivals - Haven Home</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; color: #2b1a10; background: #fff; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Top announcement bar */
+    .announce {
+      background: #e8d9c5; color: #7a4a22; text-align: center;
+      padding: 16px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    /* Header / Navbar */
+    header {
+      background: #fbf1e6; display: flex; align-items: center;
+      justify-content: space-between; padding: 20px 90px;
+    }
+    .logo { text-align: center; font-family: Georgia, serif; line-height: 1.1; }
+    .logo .big { font-size: 34px; letter-spacing: 6px; }
+    .logo .small { font-size: 24px; letter-spacing: 8px; font-family: Arial, sans-serif; }
+    nav { display: flex; gap: 32px; }
+    nav a { font-size: 17px; letter-spacing: 2px; text-transform: uppercase; color: #5c3317; padding-bottom: 4px; }
+    nav a:hover, nav a.active { border-bottom: 2px solid #5c3317; }
+    .icons { display: flex; gap: 26px; align-items: center; font-size: 22px; color: #5c3317; }
+    .cart { position: relative; }
+    .cart small {
+      position: absolute; top: -10px; right: -14px; background: #5c3317; color: #fff;
+      font-size: 11px; width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Banner */
+    .banner { background: #e8d6c0; text-align: center; padding: 60px 20px; }
+    .banner h1 { font-family: Georgia, serif; font-size: 46px; color: #7a3f1d; margin-bottom: 12px; }
+    .banner p { font-size: 18px; color: #3a2a20; }
+
+    /* Featured new item */
+    .featured {
+      display: flex; gap: 50px; align-items: center;
+      padding: 70px 90px 30px; max-width: 1300px; margin: auto;
+    }
+    .featured img { width: 50%; height: 400px; object-fit: cover; border-radius: 12px; background: #e8d6c0; }
+    .featured .text { width: 50%; }
+    .tag {
+      display: inline-block; background: #5c3317; color: #fff; font-size: 12px;
+      letter-spacing: 2px; padding: 6px 14px; border-radius: 20px; margin-bottom: 14px;
+    }
+    .featured h2 { font-family: Georgia, serif; font-size: 36px; color: #5c3317; margin-bottom: 14px; }
+    .featured p { font-size: 17px; line-height: 1.8; color: #3a2a20; margin-bottom: 14px; }
+    .featured .price { font-size: 26px; color: #7a4a22; font-weight: bold; margin-bottom: 20px; }
+    .btn {
+      background: #5c3317; color: #fff; border: none; padding: 13px 30px;
+      border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.3s;
+    }
+    .btn:hover { background: #7a3f1d; }
+
+    /* Section title */
+    .section-title { text-align: center; padding: 50px 20px 0; }
+    .section-title h2 { font-family: Georgia, serif; font-size: 34px; color: #5c3317; margin-bottom: 8px; }
+    .section-title p { color: #a08060; font-size: 16px; }
+
+    /* Product grid */
+    .products {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 30px; padding: 30px 90px 70px;
+    }
+    .card { position: relative; border: 1px solid #eee; border-radius: 10px; overflow: hidden; transition: 0.3s; background: #fff; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(92,51,23,0.15); }
+    .card .badge {
+      position: absolute; top: 12px; left: 12px; background: #5c3317; color: #fff;
+      font-size: 11px; letter-spacing: 2px; padding: 5px 12px; border-radius: 20px; z-index: 2;
+    }
+    .card img { width: 100%; height: 240px; object-fit: cover; display: block; background: #e8d6c0; }
+    .card .info { padding: 18px; text-align: center; }
+    .card h3 { font-family: Georgia, serif; font-size: 20px; color: #5c3317; margin-bottom: 4px; }
+    .card .cat { font-size: 13px; color: #a08060; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .card .price { color: #7a4a22; font-size: 18px; font-weight: bold; margin-bottom: 14px; }
+    .card button {
+      background: #5c3317; color: #fff; border: none; padding: 11px 24px;
+      border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s;
+    }
+    .card button:hover { background: #7a3f1d; }
+
+    /* Newsletter */
+    .newsletter { background: #fbf1e6; text-align: center; padding: 60px 20px; }
+    .newsletter h2 { font-family: Georgia, serif; font-size: 32px; color: #5c3317; margin-bottom: 10px; }
+    .newsletter p { color: #3a2a20; margin-bottom: 22px; }
+    .newsletter form { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .newsletter input {
+      padding: 13px 16px; width: 300px; max-width: 100%; border: 1px solid #c9ac8a;
+      border-radius: 6px; font-size: 15px;
+    }
+    .thanks { display: none; margin-top: 16px; color: #2f5d1f; font-weight: bold; }
+
+    /* Footer */
+    footer { background: #5c3317; color: #e8d9c5; text-align: center; padding: 30px 20px; font-size: 14px; letter-spacing: 1px; }
+
+    @media (max-width: 900px) {
+      header { flex-direction: column; gap: 16px; padding: 20px; }
+      nav { gap: 18px; flex-wrap: wrap; justify-content: center; }
+      .featured { flex-direction: column; padding: 40px 20px 10px; }
+      .featured img, .featured .text { width: 100%; }
+      .products { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce">Free shipping on orders over $75 &nbsp;•&nbsp; Easy 40-day returns</div>
+
+  <header>
+    <div class="logo">
+      <div class="big">HAVEN</div>
+      <div class="small">HOME</div>
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="new.html" class="active">New</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="icons">
+      <span>⌕</span>
+      <span>♙</span>
+      <span class="cart">♧<small id="cartCount">0</small></span>
+    </div>
+  </header>
+
+  <section class="banner">
+    <h1>New Arrivals</h1>
+    <p>Fresh additions to our boho collection, just landed.</p>
+  </section>
+
+  <section class="featured">
+    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=900&q=80" alt="Featured new item">
+    <div class="text">
+      <span class="tag">JUST IN</span>
+      <h2>Golden Arc Floor Lamp</h2>
+      <p>Our newest statement piece. A tall brass-toned arc lamp that fills your living room with a warm, soft glow. Perfect beside a sofa or reading corner.</p>
+      <div class="price">$135.00</div>
+      <button class="btn" onclick="addToCart()">Add to Cart</button>
+    </div>
+  </section>
+
+  <div class="section-title">
+    <h2>Latest Products</h2>
+    <p>Handpicked pieces added this season</p>
+  </div>
+
+  <section class="products">
+
+    <div class="card">
+      <span class="badge">NEW</span>
+      <img src="https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&w=500&q=80" alt="Stone Textured Vase">
+      <div class="info"><h3>Stone Textured Vase</h3><div class="cat">Vases</div><div class="price">$32.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card">
+      <span class="badge">NEW</span>
+      <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=500&q=80" alt="Abstract Line Art">
+      <div class="info"><h3>Abstract Line Art</h3><div class="cat">Wall Art</div><div class="price">$52.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card">
+      <span class="badge">NEW</span>
+      <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=500&q=80" alt="Vanilla Wood Candle">
+      <div class="info"><h3>Vanilla Wood Candle</h3><div class="cat">Candles</div><div class="price">$19.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card">
+      <span class="badge">NEW</span>
+      <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80" alt="Linen Cushion Cover">
+      <div class="info"><h3>Linen Cushion Cover</h3><div class="cat">Textile</div><div class="price">$21.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card">
+      <span class="badge">NEW</span>
+      <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=500&q=80" alt="Arched Wall Mirror">
+      <div class="info"><h3>Arched Wall Mirror</h3><div class="cat">Mirrors</div><div class="price">$89.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card">
+      <span class="badge">NEW</span>
+      <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=500&q=80" alt="Essential Oil Set">
+      <div class="info"><h3>Essential Oil Set</h3><div class="cat">Aroma</div><div class="price">$27.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+  </section>
+
+  <section class="newsletter">
+    <h2>Be the First to Know</h2>
+    <p>Join our list and get early access to new arrivals and offers.</p>
+    <form id="newsForm">
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit" class="btn">Subscribe</button>
+    </form>
+    <div class="thanks" id="thanks">Thank you for subscribing!</div>
+  </section>
+
+  <footer>© 2026 HAVEN HOME • Curated Boho Decor</footer>
+
+  <script>
+    let count = 0;
+    function addToCart() {
+      count++;
+      document.getElementById("cartCount").textContent = count;
+    }
+    document.getElementById("newsForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("thanks").style.display = "block";
+      this.reset();
+    });
+  </script>
+</body>
+</html>

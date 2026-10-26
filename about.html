@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Haven Home</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; color: #2b1a10; background: #fff; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Top announcement bar */
+    .announce {
+      background: #e8d9c5; color: #7a4a22; text-align: center;
+      padding: 16px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    /* Header / Navbar */
+    header {
+      background: #fbf1e6; display: flex; align-items: center;
+      justify-content: space-between; padding: 20px 90px;
+    }
+    .logo { text-align: center; font-family: Georgia, serif; line-height: 1.1; }
+    .logo .big { font-size: 34px; letter-spacing: 6px; }
+    .logo .small { font-size: 24px; letter-spacing: 8px; font-family: Arial, sans-serif; }
+    nav { display: flex; gap: 32px; }
+    nav a { font-size: 17px; letter-spacing: 2px; text-transform: uppercase; color: #5c3317; padding-bottom: 4px; }
+    nav a:hover, nav a.active { border-bottom: 2px solid #5c3317; }
+    .icons { display: flex; gap: 26px; align-items: center; font-size: 22px; color: #5c3317; }
+    .cart { position: relative; }
+    .cart small {
+      position: absolute; top: -10px; right: -14px; background: #5c3317; color: #fff;
+      font-size: 11px; width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Banner */
+    .banner { background: #e8d6c0; text-align: center; padding: 60px 20px; }
+    .banner h1 { font-family: Georgia, serif; font-size: 46px; color: #7a3f1d; margin-bottom: 12px; }
+    .banner p { font-size: 18px; color: #3a2a20; }
+
+    /* Our Story */
+    .story {
+      display: flex; gap: 50px; align-items: center;
+      padding: 70px 90px; max-width: 1300px; margin: auto;
+    }
+    .story img { width: 50%; height: 420px; object-fit: cover; border-radius: 12px; background: #e8d6c0; }
+    .story .text { width: 50%; }
+    .story h2 { font-family: Georgia, serif; font-size: 36px; color: #5c3317; margin-bottom: 18px; }
+    .story p { font-size: 17px; line-height: 1.8; color: #3a2a20; margin-bottom: 14px; }
+
+    /* Mission */
+    .mission { background: #fbf1e6; text-align: center; padding: 60px 90px; }
+    .mission h2 { font-family: Georgia, serif; font-size: 34px; color: #5c3317; margin-bottom: 16px; }
+    .mission p { font-size: 18px; line-height: 1.8; max-width: 800px; margin: auto; color: #3a2a20; }
+
+    /* Values */
+    .values { padding: 70px 90px; text-align: center; }
+    .values h2 { font-family: Georgia, serif; font-size: 34px; color: #5c3317; margin-bottom: 40px; }
+    .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+    .value-card { background: #fbf1e6; border-radius: 12px; padding: 34px 24px; transition: 0.3s; }
+    .value-card:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(92,51,23,0.15); }
+    .value-card .icon { font-size: 40px; margin-bottom: 14px; }
+    .value-card h3 { font-family: Georgia, serif; color: #5c3317; font-size: 21px; margin-bottom: 10px; }
+    .value-card p { font-size: 15px; line-height: 1.7; color: #3a2a20; }
+
+    /* Stats */
+    .stats {
+      background: #5c3317; color: #e8d9c5; display: flex; justify-content: space-around;
+      flex-wrap: wrap; gap: 30px; padding: 50px 90px; text-align: center;
+    }
+    .stats h3 { font-family: Georgia, serif; font-size: 40px; margin-bottom: 6px; }
+    .stats p { letter-spacing: 1px; font-size: 15px; text-transform: uppercase; }
+
+    /* Team */
+    .team { padding: 70px 90px; text-align: center; }
+    .team h2 { font-family: Georgia, serif; font-size: 34px; color: #5c3317; margin-bottom: 40px; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+    .member .avatar {
+      width: 130px; height: 130px; border-radius: 50%; background: #e8d6c0; margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: Georgia, serif; font-size: 44px; color: #7a3f1d;
+    }
+    .member h3 { color: #5c3317; font-size: 19px; margin-bottom: 4px; }
+    .member p { color: #a08060; font-size: 14px; }
+
+    /* CTA */
+    .cta { background: #e8d6c0; text-align: center; padding: 60px 20px; }
+    .cta h2 { font-family: Georgia, serif; font-size: 34px; color: #5c3317; margin-bottom: 20px; }
+    .cta a {
+      display: inline-block; background: #5c3317; color: #fff; padding: 14px 34px;
+      border-radius: 6px; font-weight: bold; transition: 0.3s;
+    }
+    .cta a:hover { background: #7a3f1d; }
+
+    /* Footer */
+    footer { background: #5c3317; color: #e8d9c5; text-align: center; padding: 30px 20px; font-size: 14px; letter-spacing: 1px; }
+
+    @media (max-width: 900px) {
+      header { flex-direction: column; gap: 16px; padding: 20px; }
+      nav { gap: 18px; flex-wrap: wrap; justify-content: center; }
+      .story { flex-direction: column; padding: 40px 20px; }
+      .story img, .story .text { width: 100%; }
+      .mission, .values, .team, .stats { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce">Free shipping on orders over $75 &nbsp;•&nbsp; Easy 40-day returns</div>
+
+  <header>
+    <div class="logo">
+      <div class="big">HAVEN</div>
+      <div class="small">HOME</div>
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="new.html">New</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="icons">
+      <span>⌕</span>
+      <span>♙</span>
+      <span class="cart">♧<small>0</small></span>
+    </div>
+  </header>
+
+  <section class="banner">
+    <h1>About Haven Home</h1>
+    <p>Natural textures for a calm, cozy home.</p>
+  </section>
+
+  <section class="story">
+    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80" alt="Our story">
+    <div class="text">
+      <h2>Our Story</h2>
+      <p>Haven Home started with a simple idea: a home should feel calm, warm, and truly yours. We began as a small collection of handcrafted boho pieces and grew into a curated decor store loved by people who enjoy natural, cozy living.</p>
+      <p>Every item we offer is chosen for its texture, quality, and timeless look. From woven fibers to earthy ceramics, our pieces are inspired by nature and made to last.</p>
+    </div>
+  </section>
+
+  <section class="mission">
+    <h2>Our Mission</h2>
+    <p>To help everyone create a peaceful space they love coming back to, with affordable, handcrafted decor made from natural materials and timeless neutrals.</p>
+  </section>
+
+  <section class="values">
+    <h2>What We Believe In</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="icon">🌿</div>
+        <h3>Natural Materials</h3>
+        <p>Jute, wood, clay, cotton and rattan. We choose earthy materials that feel good and look beautiful.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">🤲</div>
+        <h3>Handcrafted Quality</h3>
+        <p>Each piece is carefully made and checked, so it adds character and lasts for years.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">♻️</div>
+        <h3>Sustainable Choices</h3>
+        <p>We care about the planet and work with makers who use responsible, eco-friendly methods.</p>
+      </div>
+      <div class="value-card">
+        <div class="icon">💛</div>
+        <h3>Customer Happiness</h3>
+        <p>Free shipping over $75 and easy 40-day returns, so you can shop with confidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><h3>10+</h3><p>Categories</p></div>
+    <div><h3>5,000+</h3><p>Happy Customers</p></div>
+    <div><h3>40 Days</h3><p>Easy Returns</p></div>
+    <div><h3>100%</h3><p>Curated Pieces</p></div>
+  </section>
+
+  <section class="team">
+    <h2>Meet Our Team</h2>
+    <div class="team-grid">
+      <div class="member"><div class="avatar">D</div><h3>Dark Queen</h3><p>Founder &amp; Head of Haven Home</p></div>
+      <div class="member"><div class="avatar">S</div><h3>Sara Ahmed</h3><p>Head of Design</p></div>
+      <div class="member"><div class="avatar">S</div><h3>Salar</h3><p>Product Curator</p></div>
+      <div class="member"><div class="avatar">W</div><h3>Wajdan</h3><p>Customer Care Lead</p></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to make your home cozy?</h2>
+    <a href="shop.html">Shop Collection</a>
+  </section>
+
+  <footer>© 2026 HAVEN HOME • Curated Boho Decor</footer>
+
+</body>
+</html>

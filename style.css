@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #4a2f1c;
+}
+
+/* Top Bar */
+.top-bar {
+    height: 48px;
+    background: #eadbca;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #5c3d24;
+}
+
+/* Navigation */
+.navbar {
+    height: 96px;
+    background: #fcf4eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+}
+
+.logo {
+    line-height: 1;
+    text-align: center;
+    color:#1e1e1e;
+}
+
+.logo h1 {
+    font-family: Georgia, serif;
+    font-size: 34px;
+    letter-spacing: 4px;
+    font-weight: 500;
+    
+}
+
+.logo p {
+    font-size: 22px;
+    letter-spacing: 5px;
+    margin-top: 7px;
+    color: #1e1e1e; 
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+    margin-left: 80px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #5c3d24;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+nav a:hover {
+    color: #a06d42;
+}
+
+.icons {
+    display: flex;
+    gap: 23px;
+    font-size: 31px;
+    align-items: center;
+}
+
+.icons span {
+    font-family: Arial, sans-serif;
+    font-weight: 300;
+}
+
+.bag {
+    position: relative;
+}
+
+.bag small {
+    position: absolute;
+    right: -8px;
+    top: -7px;
+    background: #5c3d24;
+    color: white;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hero */
+.hero {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    min-height: 310px;
+}
+
+.hero-image {
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 310px;
+    object-fit: cover;
+}
+
+.hero-content {
+    background: #ead7c2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 45px 8%;
+}
+
+.hero-content h2 {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 18px;
+    color: #713d1d;
+}
+
+.hero-content p {
+    max-width: 550px;
+    font-size: 18px;
+    line-height: 1.55;
+    color: #2f2118;
+    margin-bottom: 25px;
+}
+
+.shop-btn {
+    display: inline-block;
+    width: fit-content;
+    background: #59351e;
+    color: white;
+    padding: 16px 34px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.shop-btn:hover {
+    background: #7b4b2d;
+}
+
+/* Category Section */
+.categories {
+    padding: 22px 7% 45px;
+    text-align: center;
+}
+
+.categories > h2 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #8a684c;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.category-card {
+    background: #efe1d0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(75, 45, 25, 0.15);
+}
+
+.category-card img {
+    width: 100%;
+    height: 155px;
+    object-fit: cover;
+    display: block;
+}
+
+.category-card h3 {
+    padding: 13px 5px 16px;
+    font-size: 19px;
+    font-weight: 600;
+    color: #4a2f1c;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+    nav {
+        margin-left: 0;
+        gap: 12px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero-content h2 {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        height: auto;
+        padding: 20px;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-image img {
+        min-height: 250px;
+    }
+
+    .hero-content {
+        padding: 35px 25px;
+    }
+
+    .hero-content h2 {
+        font-size: 36px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 450px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .top-bar {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Haven Home</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; color: #2b1a10; background: #fff; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Top announcement bar */
+    .announce {
+      background: #e8d9c5; color: #7a4a22; text-align: center;
+      padding: 16px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    /* Header / Navbar */
+    header {
+      background: #fbf1e6; display: flex; align-items: center;
+      justify-content: space-between; padding: 20px 90px;
+    }
+    .logo { text-align: center; font-family: Georgia, serif; line-height: 1.1; }
+    .logo .big { font-size: 34px; letter-spacing: 6px; }
+    .logo .small { font-size: 24px; letter-spacing: 8px; font-family: Arial, sans-serif; }
+    nav { display: flex; gap: 32px; }
+    nav a { font-size: 17px; letter-spacing: 2px; text-transform: uppercase; color: #5c3317; padding-bottom: 4px; }
+    nav a:hover, nav a.active { border-bottom: 2px solid #5c3317; }
+    .icons { display: flex; gap: 26px; align-items: center; font-size: 22px; color: #5c3317; }
+    .cart { position: relative; }
+    .cart small {
+      position: absolute; top: -10px; right: -14px; background: #5c3317; color: #fff;
+      font-size: 11px; width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Banner */
+    .banner { background: #e8d6c0; text-align: center; padding: 60px 20px; }
+    .banner h1 { font-family: Georgia, serif; font-size: 46px; color: #7a3f1d; margin-bottom: 12px; }
+    .banner p { font-size: 18px; color: #3a2a20; }
+
+    /* Contact section */
+    .contact {
+      display: flex; gap: 50px; padding: 70px 90px; max-width: 1300px; margin: auto;
+    }
+    .info { width: 40%; }
+    .info h2, .form-box h2 { font-family: Georgia, serif; font-size: 32px; color: #5c3317; margin-bottom: 14px; }
+    .info > p { font-size: 16px; line-height: 1.8; color: #3a2a20; margin-bottom: 26px; }
+    .info-item {
+      display: flex; gap: 16px; align-items: flex-start; background: #fbf1e6;
+      padding: 18px; border-radius: 10px; margin-bottom: 16px;
+    }
+    .info-item .icon { font-size: 26px; }
+    .info-item h4 { color: #5c3317; margin-bottom: 4px; font-size: 16px; }
+    .info-item p { font-size: 15px; color: #3a2a20; line-height: 1.5; }
+
+    .form-box { width: 60%; background: #fbf1e6; padding: 40px; border-radius: 12px; }
+    .row { display: flex; gap: 18px; }
+    .field { flex: 1; margin-bottom: 18px; }
+    label { display: block; font-size: 14px; color: #5c3317; margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+    input, select, textarea {
+      width: 100%; padding: 13px 14px; border: 1px solid #c9ac8a; border-radius: 6px;
+      font-size: 15px; font-family: inherit; background: #fff; color: #2b1a10;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #5c3317; box-shadow: 0 0 0 3px rgba(92,51,23,0.12); }
+    textarea { resize: vertical; min-height: 140px; }
+    .send-btn {
+      background: #5c3317; color: #fff; border: none; padding: 14px 36px;
+      border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;
+    }
+    .send-btn:hover { background: #7a3f1d; }
+    .success {
+      display: none; margin-top: 18px; background: #e3f1dc; color: #2f5d1f;
+      padding: 14px; border-radius: 6px; font-size: 15px;
+    }
+
+    /* FAQ */
+    .faq { background: #fbf1e6; padding: 60px 90px; text-align: center; }
+    .faq h2 { font-family: Georgia, serif; font-size: 34px; color: #5c3317; margin-bottom: 30px; }
+    .faq-item {
+      background: #fff; max-width: 800px; margin: 0 auto 14px; text-align: left;
+      border-radius: 8px; padding: 18px 22px; border: 1px solid #eadcc9;
+    }
+    .faq-item h4 { color: #5c3317; margin-bottom: 6px; }
+    .faq-item p { font-size: 15px; color: #3a2a20; line-height: 1.6; }
+
+    /* Footer */
+    footer { background: #5c3317; color: #e8d9c5; text-align: center; padding: 30px 20px; font-size: 14px; letter-spacing: 1px; }
+
+    @media (max-width: 900px) {
+      header { flex-direction: column; gap: 16px; padding: 20px; }
+      nav { gap: 18px; flex-wrap: wrap; justify-content: center; }
+      .contact { flex-direction: column; padding: 40px 20px; }
+      .info, .form-box { width: 100%; }
+      .row { flex-direction: column; gap: 0; }
+      .faq { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce">Free shipping on orders over $75 &nbsp;•&nbsp; Easy 40-day returns</div>
+
+  <header>
+    <div class="logo">
+      <div class="big">HAVEN</div>
+      <div class="small">HOME</div>
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="new.html">New</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+
+    <div class="icons">
+      <span>⌕</span>
+      <span>♙</span>
+      <span class="cart">♧<small>0</small></span>
+    </div>
+  </header>
+
+  <section class="banner">
+    <h1>Contact Us</h1>
+    <p>We would love to hear from you. Send us a message anytime.</p>
+  </section>
+
+  <section class="contact">
+
+    <div class="info">
+      <h2>Get in Touch</h2>
+      <p>Have a question about an order, a product, or want help choosing decor for your home? Our team is happy to help.</p>
+
+      <div class="info-item">
+        <div class="icon">📍</div>
+        <div><h4>Address</h4><p>12 Garden Street, Lahore, Pakistan</p></div>
+      </div>
+      <div class="info-item">
+        <div class="icon">📞</div>
+        <div><h4>Phone</h4><p>+92 300 1234567</p></div>
+      </div>
+      <div class="info-item">
+        <div class="icon">✉️</div>
+        <div><h4>Email</h4><p>hello@havenhome.com</p></div>
+      </div>
+      <div class="info-item">
+        <div class="icon">🕒</div>
+        <div><h4>Working Hours</h4><p>Mon - Sat: 10:00 AM - 8:00 PM<br>Sunday: Closed</p></div>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <h2>Send a Message</h2>
+      <form id="contactForm">
+        <div class="row">
+          <div class="field"><label for="name">Your Name</label><input type="text" id="name" placeholder="Enter your name" required></div>
+          <div class="field"><label for="email">Email</label><input type="email" id="email" placeholder="Enter your email" required></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" placeholder="Your phone number"></div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <select id="subject">
+              <option>General Question</option>
+              <option>Order Help</option>
+              <option>Returns &amp; Refunds</option>
+              <option>Product Information</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="message">Message</label><textarea id="message" placeholder="Write your message here..." required></textarea></div>
+        <button type="submit" class="send-btn">Send Message</button>
+        <div class="success" id="successMsg">Thank you! Your message has been sent. We will reply soon.</div>
+      </form>
+    </div>
+
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item"><h4>How long does shipping take?</h4><p>Orders usually arrive within 3 to 7 working days. Shipping is free on orders over $75.</p></div>
+    <div class="faq-item"><h4>What is your return policy?</h4><p>You can return any item within 40 days for an easy, hassle-free return.</p></div>
+    <div class="faq-item"><h4>Are your products handcrafted?</h4><p>Yes. Our pieces are made from natural materials like jute, wood, clay and rattan.</p></div>
+  </section>
+
+  <footer>© 2026 HAVEN HOME • Curated Boho Decor</footer>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("successMsg").style.display = "block";
+      this.reset();
+    });
+  </script>
+</body>
+</html>

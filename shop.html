@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - Haven Home</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; color: #2b1a10; background: #fff; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Top announcement bar */
+    .announce {
+      background: #e8d9c5; color: #7a4a22; text-align: center;
+      padding: 16px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    /* Header / Navbar */
+    header {
+      background: #fbf1e6; display: flex; align-items: center;
+      justify-content: space-between; padding: 20px 90px;
+    }
+    .logo { text-align: center; font-family: Georgia, serif; line-height: 1.1; }
+    .logo .big { font-size: 34px; letter-spacing: 6px; }
+    .logo .small { font-size: 24px; letter-spacing: 8px; font-family: Arial, sans-serif; }
+    nav { display: flex; gap: 32px; }
+    nav a { font-size: 17px; letter-spacing: 2px; text-transform: uppercase; color: #5c3317; padding-bottom: 4px; }
+    nav a:hover, nav a.active { border-bottom: 2px solid #5c3317; }
+    .icons { display: flex; gap: 26px; align-items: center; font-size: 22px; color: #5c3317; }
+    .cart { position: relative; }
+    .cart small {
+      position: absolute; top: -10px; right: -14px; background: #5c3317; color: #fff;
+      font-size: 11px; width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Page banner */
+    .banner { background: #e8d6c0; text-align: center; padding: 60px 20px; }
+    .banner h1 { font-family: Georgia, serif; font-size: 46px; color: #7a3f1d; margin-bottom: 12px; }
+    .banner p { font-size: 18px; color: #3a2a20; }
+
+    /* Filter buttons */
+    .filters { display: flex; justify-content: center; gap: 12px; padding: 36px 20px 10px; flex-wrap: wrap; }
+    .filters button {
+      background: #fbf1e6; border: 1px solid #c9ac8a; color: #5c3317;
+      padding: 10px 22px; border-radius: 30px; font-size: 15px; cursor: pointer; transition: 0.3s;
+    }
+    .filters button:hover, .filters button.active { background: #5c3317; color: #fff; }
+
+    /* Product grid */
+    .products {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 30px; padding: 30px 90px 70px;
+    }
+    .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; transition: 0.3s; background: #fff; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(92,51,23,0.15); }
+    .card img { width: 100%; height: 240px; object-fit: cover; display: block; background: #e8d6c0; }
+    .card .info { padding: 18px; text-align: center; }
+    .card h3 { font-family: Georgia, serif; font-size: 20px; color: #5c3317; margin-bottom: 4px; }
+    .card .cat { font-size: 13px; color: #a08060; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .card .price { color: #7a4a22; font-size: 18px; font-weight: bold; margin-bottom: 14px; }
+    .card button {
+      background: #5c3317; color: #fff; border: none; padding: 11px 24px;
+      border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s;
+    }
+    .card button:hover { background: #7a3f1d; }
+
+    /* Footer */
+    footer { background: #5c3317; color: #e8d9c5; text-align: center; padding: 30px 20px; font-size: 14px; letter-spacing: 1px; }
+
+    @media (max-width: 900px) {
+      header { flex-direction: column; gap: 16px; padding: 20px; }
+      nav { gap: 18px; flex-wrap: wrap; justify-content: center; }
+      .products { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="announce">Free shipping on orders over $75 &nbsp;•&nbsp; Easy 40-day returns</div>
+
+  <header>
+    <div class="logo">
+      <div class="big">HAVEN</div>
+      <div class="small">HOME</div>
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="new.html">New</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="icons">
+      <span>⌕</span>
+      <span>♙</span>
+      <span class="cart">♧<small id="cartCount">0</small></span>
+    </div>
+  </header>
+
+  <section class="banner">
+    <h1>Shop All Decor</h1>
+    <p>Handcrafted pieces inspired by earth, woven fibers, and timeless neutrals.</p>
+  </section>
+
+  <div class="filters">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="Vases">Vases</button>
+    <button data-filter="Wall Art">Wall Art</button>
+    <button data-filter="Lighting">Lighting</button>
+    <button data-filter="Candles">Candles</button>
+    <button data-filter="Textile">Textile</button>
+    <button data-filter="Planters">Planters</button>
+    <button data-filter="Mirrors">Mirrors</button>
+    <button data-filter="Shelves">Shelves</button>
+    <button data-filter="Clocks">Clocks</button>
+    <button data-filter="Aroma">Aroma</button>
+  </div>
+
+  <section class="products">
+
+    <div class="card" data-cat="Vases">
+      <img src="https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&w=500&q=80" alt="Ceramic Vase">
+      <div class="info"><h3>Ceramic Vase</h3><div class="cat">Vases</div><div class="price">$29.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card" data-cat="Wall Art">
+      <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=500&q=80" alt="Neutral Wall Art">
+      <div class="info"><h3>Neutral Wall Art</h3><div class="cat">Wall Art</div><div class="price">$45.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card" data-cat="Lighting">
+      <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=500&q=80" alt="Arc Floor Lamp">
+      <div class="info"><h3>Arc Floor Lamp</h3><div class="cat">Lighting</div><div class="price">$120.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card" data-cat="Candles">
+      <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=500&q=80" alt="Soy Candle Set">
+      <div class="info"><h3>Soy Candle Set</h3><div class="cat">Candles</div><div class="price">$22.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card" data-cat="Textile">
+      <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80" alt="Woven Throw Blanket">
+      <div class="info"><h3>Woven Throw Blanket</h3><div class="cat">Textile</div><div class="price">$58.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card" data-cat="Planters">
+      <img src="https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=500&q=80" alt="Clay Planter">
+      <div class="info"><h3>Clay Planter</h3><div class="cat">Planters</div><div class="price">$26.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card" data-cat="Mirrors">
+      <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=500&q=80" alt="Round Rattan Mirror">
+      <div class="info"><h3>Round Rattan Mirror</h3><div class="cat">Mirrors</div><div class="price">$75.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card" data-cat="Shelves">
+      <img src="https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=500&q=80" alt="Wooden Wall Shelf">
+      <div class="info"><h3>Wooden Wall Shelf</h3><div class="cat">Shelves</div><div class="price">$64.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card" data-cat="Clocks">
+      <img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?auto=format&fit=crop&w=500&q=80" alt="Minimal Wall Clock">
+      <div class="info"><h3>Minimal Wall Clock</h3><div class="cat">Clocks</div><div class="price">$38.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+    <div class="card" data-cat="Aroma">
+      <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=500&q=80" alt="Aroma Diffuser">
+      <div class="info"><h3>Aroma Diffuser</h3><div class="cat">Aroma</div><div class="price">$34.00</div><button onclick="addToCart()">Add to Cart</button></div>
+    </div>
+
+  </section>
+
+  <footer>© 2026 HAVEN HOME • Curated Boho Decor</footer>
+
+  <script>
+    // Cart count
+    let count = 0;
+    function addToCart() {
+      count++;
+      document.getElementById("cartCount").textContent = count;
+    }
+
+    // Category filter
+    const buttons = document.querySelectorAll(".filters button");
+    const cards = document.querySelectorAll(".card");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const f = btn.dataset.filter;
+        cards.forEach(c => {
+          c.style.display = (f === "all" || c.dataset.cat === f) ? "block" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
