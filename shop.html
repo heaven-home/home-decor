@@ -27,7 +27,10 @@
     nav a { font-size: 17px; letter-spacing: 2px; text-transform: uppercase; color: #5c3317; padding-bottom: 4px; }
     nav a:hover, nav a.active { border-bottom: 2px solid #5c3317; }
     .icons { display: flex; gap: 26px; align-items: center; font-size: 22px; color: #5c3317; }
-    .cart { position: relative; }
+    .cart {
+      position: relative; cursor: pointer; background: none; border: none;
+      font-size: 22px; color: #5c3317; font-family: inherit;
+    }
     .cart small {
       position: absolute; top: -10px; right: -14px; background: #5c3317; color: #fff;
       font-size: 11px; width: 18px; height: 18px; border-radius: 50%;
@@ -65,6 +68,64 @@
     }
     .card button:hover { background: #7a3f1d; }
 
+    /* ---------- Cart drawer (side panel) ---------- */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45); opacity: 0;
+      pointer-events: none; transition: 0.3s; z-index: 900;
+    }
+    .overlay.show { opacity: 1; pointer-events: auto; }
+
+    .drawer {
+      position: fixed; top: 0; right: -440px; width: 420px; max-width: 100%; height: 100%;
+      background: #fff; z-index: 1000; display: flex; flex-direction: column;
+      box-shadow: -8px 0 30px rgba(0,0,0,0.2); transition: right 0.35s ease;
+    }
+    .drawer.open { right: 0; }
+
+    .drawer-head {
+      background: #fbf1e6; padding: 20px 24px; display: flex;
+      justify-content: space-between; align-items: center; border-bottom: 1px solid #eadcc9;
+    }
+    .drawer-head h2 { font-family: Georgia, serif; color: #5c3317; font-size: 24px; }
+    .close-btn { background: none; border: none; font-size: 26px; cursor: pointer; color: #5c3317; }
+
+    .drawer-items { flex: 1; overflow-y: auto; padding: 18px 24px; }
+    .d-item {
+      display: flex; gap: 14px; align-items: center; padding: 14px 0;
+      border-bottom: 1px solid #f0e6d8;
+    }
+    .d-item img { width: 76px; height: 76px; object-fit: cover; border-radius: 8px; background: #e8d6c0; }
+    .d-info { flex: 1; }
+    .d-info h4 { font-family: Georgia, serif; color: #5c3317; font-size: 16px; margin-bottom: 2px; }
+    .d-info .d-cat { font-size: 12px; color: #a08060; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .d-info .d-price { font-size: 14px; color: #7a4a22; margin-bottom: 8px; }
+    .d-qty { display: flex; align-items: center; gap: 8px; }
+    .d-qty button {
+      width: 26px; height: 26px; border: 1px solid #c9ac8a; background: #fbf1e6;
+      color: #5c3317; border-radius: 5px; font-size: 16px; cursor: pointer;
+    }
+    .d-qty button:hover { background: #5c3317; color: #fff; }
+    .d-qty span { min-width: 18px; text-align: center; font-weight: bold; font-size: 14px; }
+    .d-right { text-align: right; }
+    .d-right .d-total { font-weight: bold; color: #5c3317; font-size: 15px; margin-bottom: 8px; }
+    .d-remove { background: none; border: none; color: #b03a2e; cursor: pointer; font-size: 18px; }
+
+    .d-empty { text-align: center; padding: 60px 10px; color: #7a4a22; }
+    .d-empty h3 { font-family: Georgia, serif; color: #5c3317; font-size: 24px; margin-bottom: 8px; }
+
+    .drawer-foot { padding: 20px 24px; background: #fbf1e6; border-top: 1px solid #eadcc9; }
+    .d-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; }
+    .d-row.big { font-size: 19px; font-weight: bold; color: #5c3317; border-top: 1px solid #c9ac8a; padding-top: 10px; margin-top: 6px; }
+    .d-note { font-size: 12px; color: #7a4a22; margin-bottom: 10px; }
+    .d-btn {
+      display: block; width: 100%; text-align: center; background: #5c3317; color: #fff;
+      border: none; padding: 13px; border-radius: 6px; font-weight: bold; font-size: 15px;
+      cursor: pointer; margin-top: 10px; transition: 0.3s;
+    }
+    .d-btn:hover { background: #7a3f1d; }
+    .d-btn.light { background: transparent; color: #5c3317; border: 1px solid #5c3317; }
+    .d-btn.light:hover { background: #5c3317; color: #fff; }
+
     /* Footer */
     footer { background: #5c3317; color: #e8d9c5; text-align: center; padding: 30px 20px; font-size: 14px; letter-spacing: 1px; }
 
@@ -96,7 +157,7 @@
     <div class="icons">
       <span>⌕</span>
       <span>♙</span>
-      <span class="cart">♧<small id="cartCount">0</small></span>
+      <button class="cart" onclick="openCart()" title="Open Cart">♧<small id="cartCount">0</small></button>
     </div>
   </header>
 
@@ -123,67 +184,185 @@
 
     <div class="card" data-cat="Vases">
       <img src="https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?auto=format&fit=crop&w=500&q=80" alt="Ceramic Vase">
-      <div class="info"><h3>Ceramic Vase</h3><div class="cat">Vases</div><div class="price">$29.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Ceramic Vase</h3><div class="cat">Vases</div><div class="price">$29.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
     <div class="card" data-cat="Wall Art">
       <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=500&q=80" alt="Neutral Wall Art">
-      <div class="info"><h3>Neutral Wall Art</h3><div class="cat">Wall Art</div><div class="price">$45.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Neutral Wall Art</h3><div class="cat">Wall Art</div><div class="price">$45.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
     <div class="card" data-cat="Lighting">
       <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=500&q=80" alt="Arc Floor Lamp">
-      <div class="info"><h3>Arc Floor Lamp</h3><div class="cat">Lighting</div><div class="price">$120.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Arc Floor Lamp</h3><div class="cat">Lighting</div><div class="price">$120.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
     <div class="card" data-cat="Candles">
       <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=500&q=80" alt="Soy Candle Set">
-      <div class="info"><h3>Soy Candle Set</h3><div class="cat">Candles</div><div class="price">$22.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Soy Candle Set</h3><div class="cat">Candles</div><div class="price">$22.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
     <div class="card" data-cat="Textile">
       <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80" alt="Woven Throw Blanket">
-      <div class="info"><h3>Woven Throw Blanket</h3><div class="cat">Textile</div><div class="price">$58.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Woven Throw Blanket</h3><div class="cat">Textile</div><div class="price">$58.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
     <div class="card" data-cat="Planters">
       <img src="https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=500&q=80" alt="Clay Planter">
-      <div class="info"><h3>Clay Planter</h3><div class="cat">Planters</div><div class="price">$26.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Clay Planter</h3><div class="cat">Planters</div><div class="price">$26.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
     <div class="card" data-cat="Mirrors">
       <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=500&q=80" alt="Round Rattan Mirror">
-      <div class="info"><h3>Round Rattan Mirror</h3><div class="cat">Mirrors</div><div class="price">$75.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Round Rattan Mirror</h3><div class="cat">Mirrors</div><div class="price">$75.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
     <div class="card" data-cat="Shelves">
       <img src="https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=500&q=80" alt="Wooden Wall Shelf">
-      <div class="info"><h3>Wooden Wall Shelf</h3><div class="cat">Shelves</div><div class="price">$64.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Wooden Wall Shelf</h3><div class="cat">Shelves</div><div class="price">$64.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
     <div class="card" data-cat="Clocks">
       <img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?auto=format&fit=crop&w=500&q=80" alt="Minimal Wall Clock">
-      <div class="info"><h3>Minimal Wall Clock</h3><div class="cat">Clocks</div><div class="price">$38.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Minimal Wall Clock</h3><div class="cat">Clocks</div><div class="price">$38.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
     <div class="card" data-cat="Aroma">
       <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=500&q=80" alt="Aroma Diffuser">
-      <div class="info"><h3>Aroma Diffuser</h3><div class="cat">Aroma</div><div class="price">$34.00</div><button onclick="addToCart()">Add to Cart</button></div>
+      <div class="info"><h3>Aroma Diffuser</h3><div class="cat">Aroma</div><div class="price">$34.00</div><button onclick="addToCart(this)">Add to Cart</button></div>
     </div>
 
   </section>
 
   <footer>© 2026 HAVEN HOME • Curated Boho Decor</footer>
 
+  <!-- Cart drawer: Add to Cart ya cart icon dabane par khulta hai -->
+  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-head">
+      <h2>Your Cart (<span id="drawerCount">0</span>)</h2>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+
+    <div class="drawer-items" id="drawerItems"></div>
+
+    <div class="drawer-foot" id="drawerFoot">
+      <div class="d-row"><span>Subtotal</span><span id="dSub">$0.00</span></div>
+      <div class="d-row"><span>Shipping</span><span id="dShip">$0.00</span></div>
+      <div class="d-note" id="dNote"></div>
+      <div class="d-row big"><span>Total</span><span id="dTotal">$0.00</span></div>
+      <a href="cart.html" class="d-btn">Proceed to Checkout</a>
+      <button class="d-btn light" onclick="closeCart()">Continue Shopping</button>
+    </div>
+  </aside>
+
   <script>
-    // Cart count
-    let count = 0;
-    function addToCart() {
-      count++;
-      document.getElementById("cartCount").textContent = count;
+    // ---------- Cart data (browser mein save, cart.html ke saath shared) ----------
+    function loadCart() {
+      try { return JSON.parse(localStorage.getItem("havenCart")) || []; }
+      catch (e) { return []; }
+    }
+    function saveCart(cart) {
+      try { localStorage.setItem("havenCart", JSON.stringify(cart)); } catch (e) {}
+    }
+    const money = n => "$" + n.toFixed(2);
+
+    // ---------- Drawer ----------
+    function openCart() {
+      renderCart();
+      document.getElementById("drawer").classList.add("open");
+      document.getElementById("overlay").classList.add("show");
+    }
+    function closeCart() {
+      document.getElementById("drawer").classList.remove("open");
+      document.getElementById("overlay").classList.remove("show");
     }
 
-    // Category filter
+    function renderCart() {
+      const cart = loadCart();
+      const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+      document.getElementById("cartCount").textContent = totalQty;
+      document.getElementById("drawerCount").textContent = totalQty;
+
+      const box = document.getElementById("drawerItems");
+      const foot = document.getElementById("drawerFoot");
+
+      if (cart.length === 0) {
+        box.innerHTML = '<div class="d-empty"><h3>Your cart is empty</h3><p>Add some beautiful decor pieces!</p></div>';
+        foot.style.display = "none";
+        return;
+      }
+      foot.style.display = "block";
+
+      box.innerHTML = cart.map((item, i) => `
+        <div class="d-item">
+          <img src="${item.img}" alt="${item.name}">
+          <div class="d-info">
+            <h4>${item.name}</h4>
+            <div class="d-cat">${item.category}</div>
+            <div class="d-price">${money(item.price)} each</div>
+            <div class="d-qty">
+              <button onclick="changeQty(${i}, -1)">−</button>
+              <span>${item.qty}</span>
+              <button onclick="changeQty(${i}, 1)">+</button>
+            </div>
+          </div>
+          <div class="d-right">
+            <div class="d-total">${money(item.price * item.qty)}</div>
+            <button class="d-remove" onclick="removeItem(${i})" title="Remove">🗑</button>
+          </div>
+        </div>
+      `).join("");
+
+      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const shipping = subtotal >= 75 ? 0 : 8;
+      document.getElementById("dSub").textContent = money(subtotal);
+      document.getElementById("dShip").textContent = shipping === 0 ? "FREE" : money(shipping);
+      document.getElementById("dNote").textContent =
+        shipping === 0 ? "You got free shipping! 🎉" : "Add " + money(75 - subtotal) + " more for free shipping.";
+      document.getElementById("dTotal").textContent = money(subtotal + shipping);
+    }
+
+    function changeQty(index, change) {
+      const cart = loadCart();
+      cart[index].qty += change;
+      if (cart[index].qty <= 0) cart.splice(index, 1);
+      saveCart(cart);
+      renderCart();
+    }
+    function removeItem(index) {
+      const cart = loadCart();
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderCart();
+    }
+
+    // ---------- Add to Cart: product ki details save hoti hain aur cart panel khul jata hai ----------
+    function addToCart(btn) {
+      const card = btn.closest(".card");
+      const product = {
+        name: card.querySelector("h3").textContent,
+        category: card.dataset.cat,
+        price: parseFloat(card.querySelector(".price").textContent.replace("$", "")),
+        img: card.querySelector("img").src,
+        qty: 1
+      };
+
+      const cart = loadCart();
+      const existing = cart.find(item => item.name === product.name);
+      if (existing) { existing.qty++; } else { cart.push(product); }
+      saveCart(cart);
+
+      openCart();
+    }
+
+    // Esc dabane se cart band
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeCart(); });
+
+    // Page khulte hi badge update
+    renderCart();
+
+    // ---------- Category filter ----------
     const buttons = document.querySelectorAll(".filters button");
     const cards = document.querySelectorAll(".card");
     buttons.forEach(btn => {
